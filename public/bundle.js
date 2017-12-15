@@ -21591,6 +21591,15 @@ var createReactClass = __webpack_require__(8);
 var UserRepos = createReactClass({
   displayName: 'UserRepos',
 
+  getInitialState: function () {
+    return {
+      reposCount: 0
+    };
+  },
+
+  componentWillReceiveProps: function (props) {
+    this.setState({ reposCount: props.repos.length });
+  },
 
   render: function () {
     var repos = this.props.repos.map(function (repo, key) {
@@ -21642,7 +21651,8 @@ var UserRepos = createReactClass({
       React.createElement(
         'h2',
         null,
-        'repositories'
+        this.state.reposCount,
+        ' repositories'
       ),
       repos
     );

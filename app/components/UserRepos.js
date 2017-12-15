@@ -2,7 +2,16 @@ var React = require('react');
 var createReactClass = require('create-react-class');
 
 var UserRepos = createReactClass({
- 
+    getInitialState: function() {
+        return {
+            reposCount: 0,
+        }
+    },
+
+    componentWillReceiveProps: function(props) {
+        this.setState({reposCount: props.repos.length});
+    },
+
   render: function() {
     var repos = this.props.repos.map(function(repo, key) {
       return (
@@ -23,7 +32,7 @@ var UserRepos = createReactClass({
 
     return (
       <div>
-        <h2>repositories</h2>
+        <h2>{this.state.reposCount} repositories</h2>
         {repos}
       </div>
     );
